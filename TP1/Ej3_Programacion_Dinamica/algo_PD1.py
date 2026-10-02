@@ -43,7 +43,7 @@ def main():
     W, elementos = leer_mochila(nombre_archivo)
     beneficio, items = mochila_max_beneficio(elementos, W)
     print(f"Beneficio máximo = {beneficio}")
-    print(f"Elementos elegidos = {len(items)}")
+    print(f"Elementos elegidos = {(items)}")
 
 if __name__ == "__main__":
     main()

@@ -46,16 +46,21 @@ def mochila_min_peso(elementos, B):
 def main():
     nombre_archivo = "sets/mochila100.txt"
 
-    B, elementos = leer_mochila(nombre_archivo)
+    W, elementos = leer_mochila(nombre_archivo)
+
+    #Aca saco el beneficio fijo B del beneficio óptimo que devuelve el planteo tradicional
+    from algo_PD1 import mochila_max_beneficio   
+    B, _ = mochila_max_beneficio(elementos, W)
 
     resultado = mochila_min_peso(elementos, B)
     if resultado is None:
         print(f"No existe una combinación con beneficio exactamente {B}")
         return
-    
+
     peso_min, items = resultado
+    print(f"Beneficio objetivo B = {B}")
     print(f"Peso mínimo = {peso_min}")
-    print(f"Elementos elegidos = {len(items)}")
+    print(f"Elementos elegidos = {(items)}")
 
 if __name__ == "__main__":
     main()
