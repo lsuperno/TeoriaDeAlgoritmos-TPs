@@ -1,5 +1,6 @@
 import pulp
 from random import randint
+import time
 
 """
 Instrucciones de ejecución:
@@ -78,11 +79,26 @@ def mochila_pulp(items: list[tuple[int, int]], capacidad: int) -> float:
 
 def main():
     """
-    Problema de la mochila con 10000 elementos
+    Medición de tiempos del problema de la mochila hasta 40000 elementos
     """
-    crear_mochila(10000)
-    elementos, cantidad = leer_mochila(10000)
-    print(mochila_pulp(elementos, cantidad))
+    tamanos = [10, 50, 100, 500, 1000, 2500, 5000, 10000, 20000, 30000, 40000]
+    tiempos_medidos = []
+
+    print("Iniciando medición de tiempos...")
+
+    for n in tamanos:
+        # 1. Preparar los datos
+        crear_mochila(n)
+        elementos, capacidad = leer_mochila(n)
+
+        # 2. Medir tiempo exclusivamente del solver
+        inicio = time.time()
+        mochila_pulp(elementos, capacidad)
+        fin = time.time()
+
+        tiempo_ejecucion = fin - inicio
+        tiempos_medidos.append(tiempo_ejecucion)
+        print(tiempos_medidos)
 
 
 if __name__ == "__main__":
