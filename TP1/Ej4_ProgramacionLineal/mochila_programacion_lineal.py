@@ -1,6 +1,5 @@
 import pulp
 from random import randint
-import time
 
 """
 Instrucciones de ejecución:
@@ -12,6 +11,9 @@ Nota: El script creara un archivo.txt con los datos aleatorios de los items
 
 
 def crear_mochila(n):
+    """
+    Funcion de crear mochila de la catedra
+    """
     nombre = "mochila" + str(n) + ".txt"
     arch = open(nombre, "w")
     cap = n * 50
@@ -23,7 +25,7 @@ def crear_mochila(n):
     arch.close()
 
 
-def leer_mochila(n: int) -> list[tuple[int, int]]:
+def leer_mochila(n: int) -> tuple[list[tuple[int, int]], int]:
     """
     Lee una mochila desde un archivo y devuelve las caracteristicas de la misma
     -Entrada: n (int): Número que identifica el archivo ('mochilaN.txt').
@@ -45,9 +47,7 @@ def leer_mochila(n: int) -> list[tuple[int, int]]:
 def mochila_pulp(items: list[tuple[int, int]], capacidad: int) -> float:
     """
     Resuelve el problema de la mochila usando programación lineal y Pulp
-    Para cada ítem se crea una variable binaria x[i] (0 o 1) que indica si el
-    ítem se incluye en la mochila. Se maximiza la suma de beneficios sin que
-    la suma de pesos supere la capacidad total de la mochila
+    Se maximiza la suma de beneficios sin que la suma de pesos supere la capacidad total de la mochila
     -Entrada: items (list[tuple[int, int]]): Lista de tuplas (peso, beneficio).
               capacidad (int): Capacidad máxima de la mochila.
     -Salida: float: Valor del beneficio total.
@@ -79,26 +79,11 @@ def mochila_pulp(items: list[tuple[int, int]], capacidad: int) -> float:
 
 def main():
     """
-    Medición de tiempos del problema de la mochila hasta 40000 elementos
+    Problema de la mochila con 10000 elementos
     """
-    tamanos = [10, 50, 100, 500, 1000, 2500, 5000, 10000, 20000, 30000, 40000]
-    tiempos_medidos = []
-
-    print("Iniciando medición de tiempos...")
-
-    for n in tamanos:
-        # 1. Preparar los datos
-        crear_mochila(n)
-        elementos, capacidad = leer_mochila(n)
-
-        # 2. Medir tiempo exclusivamente del solver
-        inicio = time.time()
-        mochila_pulp(elementos, capacidad)
-        fin = time.time()
-
-        tiempo_ejecucion = fin - inicio
-        tiempos_medidos.append(tiempo_ejecucion)
-        print(tiempos_medidos)
+    crear_mochila(10000)
+    elementos, cantidad = leer_mochila(10000)
+    print(mochila_pulp(elementos, cantidad))
 
 
 if __name__ == "__main__":
