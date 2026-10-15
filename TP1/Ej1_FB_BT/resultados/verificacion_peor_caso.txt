@@ -1,0 +1,7 @@
+peor_caso10.txt: FB=542 BT=542 OK
+peor_caso12.txt: FB=914 BT=914 OK
+peor_caso14.txt: FB=572 BT=572 OK
+peor_caso16.txt: FB=850 BT=850 OK
+peor_caso18.txt: FB=992 BT=992 OK
+peor_caso20.txt: FB=1152 BT=1152 OK
+peor_caso22.txt: FB=1364 BT=1364 OK
