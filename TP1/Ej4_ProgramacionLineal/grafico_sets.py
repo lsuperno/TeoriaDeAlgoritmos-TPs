@@ -1,3 +1,4 @@
+import csv
 import os
 import time
 import matplotlib.pyplot as plt
@@ -26,6 +27,7 @@ def leer_mochila_desde_archivo(ruta: str) -> tuple[list[tuple[int, int]], int]:
 # Medir los tiempos cargando los sets de la carpeta sets/
 tamanos = [10, 50, 100, 500, 1000, 2500, 5000, 10000, 20000, 30000, 40000]
 tiempos = []
+filas_csv = []
 
 # Directorio base del script y carpeta sets
 dir_base = os.path.dirname(os.path.abspath(__file__))
@@ -51,7 +53,19 @@ for n in tamanos:
 
     tiempo_total = fin - inicio
     tiempos.append(tiempo_total)
+    filas_csv.append([n, capacidad, beneficio, tiempo_total])
     print(f"  n = {n:<5} -> Tiempo: {tiempo_total:.4f} s (Beneficio: {beneficio})")
+
+# Guardar resultados en CSV
+dir_resultados = os.path.join(dir_base, "resultados")
+os.makedirs(dir_resultados, exist_ok=True)
+ruta_csv = os.path.join(dir_resultados, "resultados.csv")
+with open(ruta_csv, "w", newline="", encoding="utf-8") as f:
+    writer = csv.writer(f)
+    writer.writerow(["n", "espacio", "beneficio", "tiempo"])
+    writer.writerows(filas_csv)
+
+print(f"Resultados guardados en: {ruta_csv}")
 
 x_data = np.array(tamanos)
 y_data = np.array(tiempos)
