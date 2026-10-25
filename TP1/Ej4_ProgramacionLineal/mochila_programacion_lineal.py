@@ -1,5 +1,6 @@
 import pulp
 from random import randint
+import time
 
 """
 Instrucciones de ejecución:
@@ -83,7 +84,11 @@ def main():
     """
     crear_mochila(10000)
     elementos, cantidad = leer_mochila(10000)
-    print(mochila_pulp(elementos, cantidad))
+    inicio = time.perf_counter()
+    beneficio = mochila_pulp(elementos, cantidad)
+    fin = time.perf_counter()
+    tiempo_total = fin - inicio
+    print(f"Tiempo: {tiempo_total}, beneficio: {beneficio}")
 
 
 if __name__ == "__main__":

@@ -14,6 +14,7 @@ pip install -r requirements.txt
 |---|---|---|
 | matplotlib | 3.9.4 | Gráficos |
 | numpy | 2.0.2 | Ajuste de curvas teóricas |
+| pulp | 4.0.0 | Modelado y resolución de Programación Lineal |
 
 ## Ejercicio 1 – Fuerza Bruta vs. Backtracking
 
@@ -51,4 +52,18 @@ _Completar._
 
 ## Ejercicio 4 – Programación Lineal
 
-_Completar._
+```bash
+cd Ej4_ProgramacionLineal
+```
+
+Ejecutar una prueba individual (por defecto resuelve una instancia creada aleatoriamente de n = 10000), muestra tiempo y beneficio:
+
+```bash
+python3 mochila_programacion_lineal.py
+```
+
+Medir los tiempos sobre todos los sets de datos (`sets/`) y generar el gráfico comparativo:
+
+```bash
+python3 grafico_sets.py
+```
