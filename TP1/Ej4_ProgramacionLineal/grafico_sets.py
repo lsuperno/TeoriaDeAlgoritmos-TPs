@@ -73,4 +73,10 @@ plt.ylabel("Tiempo de ejecución (segundos)")
 plt.legend()
 plt.grid(True)
 
-plt.show()
+dir_graficos = os.path.join(dir_base, "graficos")
+os.makedirs(dir_graficos, exist_ok=True)
+ruta_grafico = os.path.join(dir_graficos, "grafico_sets.png")
+plt.savefig(ruta_grafico, dpi=300, bbox_inches="tight")
+plt.close()
+
+print(f"Gráfico guardado en: {ruta_grafico}")

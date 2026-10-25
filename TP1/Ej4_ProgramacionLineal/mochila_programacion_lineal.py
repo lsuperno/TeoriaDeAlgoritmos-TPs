@@ -82,13 +82,16 @@ def main():
     """
     Problema de la mochila con 10000 elementos
     """
-    crear_mochila(10000)
-    elementos, cantidad = leer_mochila(10000)
+    n = 10000
+    crear_mochila(n)
+    elementos, cantidad = leer_mochila(n)
     inicio = time.perf_counter()
     beneficio = mochila_pulp(elementos, cantidad)
     fin = time.perf_counter()
     tiempo_total = fin - inicio
-    print(f"Tiempo: {tiempo_total}, beneficio: {beneficio}")
+    print(
+        f"N: {n}, capacidad: {n * 50}, Tiempo: {tiempo_total}, beneficio: {beneficio}"
+    )
 
 
 if __name__ == "__main__":
