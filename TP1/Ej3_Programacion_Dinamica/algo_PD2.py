@@ -1,5 +1,8 @@
 import os
 import sys
+from algo_PD1 import mochila_max_beneficio 
+#Aca importo la funcion de algo_PD1 para sacar el beneficio fijo B del beneficio óptimo 
+#que devuelve el planteo tradicional
 
 def leer_mochila(nombre):
     with open(nombre) as arch:
@@ -44,13 +47,14 @@ def mochila_min_peso(elementos, B):
     return matriz[n][B], lista_elementos[::-1]
 
 def main():
-    nombre_archivo = "sets/mochila100.txt"
+    nombre_archivo = "sets/mochila120.txt"
 
     W, elementos = leer_mochila(nombre_archivo)
 
-    #Aca saco el beneficio fijo B del beneficio óptimo que devuelve el planteo tradicional
-    from algo_PD1 import mochila_max_beneficio   
-    B, _ = mochila_max_beneficio(elementos, W)
+    if len(sys.argv) >= 2:
+        B = int(sys.argv[1])
+    else:
+        B, _ = mochila_max_beneficio(elementos, W)
 
     resultado = mochila_min_peso(elementos, B)
     if resultado is None:
