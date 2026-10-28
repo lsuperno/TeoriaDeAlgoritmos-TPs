@@ -1,7 +1,7 @@
 import os
 import time
 import pandas as pd
-from mochila_greedy import resolver_mochila_greedy_modificado
+from mochila_greedy import mochila_greedy as resolver_mochila_greedy_modificado
 
 os.makedirs("resultados", exist_ok=True)
 
@@ -19,12 +19,13 @@ for n in tamanos:
                 pesos.append(p)
                 beneficios.append(b)
 
+    elementos = list(zip(pesos, beneficios))
     reps = 50 if n <= 10000 else 5
     tiempos = []
     
     for _ in range(reps):
         t0 = time.perf_counter()
-        beneficio_opt, seleccion = resolver_mochila_greedy_modificado(capacidad, pesos, beneficios)
+        beneficio_opt = resolver_mochila_greedy_modificado(capacidad, elementos)
         t1 = time.perf_counter()
         tiempos.append(t1 - t0)
     

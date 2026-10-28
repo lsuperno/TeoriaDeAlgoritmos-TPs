@@ -44,6 +44,26 @@ python3 generar_sets.py
 
 ## Ejercicio 2 – Greedy
 
+```bash
+cd Ej2_Greedy
+```
+
+```bash
+python3 mochila_greedy.py
+```
+
+Medir tiempos y generar gráficos:
+
+```bash
+python3 medir.py
+python3 graficos.py
+```
+Regenerar los sets (opcional, ya están en sets/):
+
+```bash
+python3 generar_sets.py
+```
+
 _Completar._
 
 ## Ejercicio 3 – Programación Dinámica

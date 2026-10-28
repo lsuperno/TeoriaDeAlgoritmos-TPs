@@ -1,12 +1,28 @@
 import os
-import subprocess
+import sys
+import shutil
+
+script_dir = os.path.dirname(os.path.abspath(__file__))
+raiz_tp = os.path.dirname(script_dir)
+sys.path.append(raiz_tp)
+
+from crear_mochila import crear_mochila
 
 os.makedirs("sets", exist_ok=True)
 
 tamanos = [100, 500, 1000, 5000, 10000, 50000, 100000, 200000, 500000]
 
-for n in tamanos:
-    cmd = f"python3 ../crear_mochila.py {n} > sets/mochila{n}.txt"
-    subprocess.run(cmd, shell=True)
+os.chdir(raiz_tp)
 
-print("Listos los archivos de prueba en la carpeta sets.")
+for n in tamanos:
+    print(f"Generando set para N = {n}...")
+    crear_mochila(n)
+    
+    archivo_origen = f"mochila{n}.txt"
+    archivo_destino = os.path.join(script_dir, "sets", f"mochila{n}.txt")
+
+    shutil.move(archivo_origen, archivo_destino)
+
+os.chdir(script_dir)
+
+print("Listos todos los archivos de prueba en la carpeta sets.")
