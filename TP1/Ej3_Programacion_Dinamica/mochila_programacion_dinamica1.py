@@ -38,7 +38,7 @@ def mochila_max_beneficio(elementos, W):
     return matriz[W][n], lista_elementos[::-1]
 
 def main():
-    nombre_archivo = "sets/mochila100.txt"
+    nombre_archivo = "sets/mochila120.txt"
 
     W, elementos = leer_mochila(nombre_archivo)
     beneficio, items = mochila_max_beneficio(elementos, W)
