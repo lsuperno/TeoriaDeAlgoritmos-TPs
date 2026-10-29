@@ -81,11 +81,15 @@ python3 generar_sets.py
 cd Ej3_Programacion_Dinamica
 ```
 
-### Resolver un set de datos (si no se indica nada, usa `sets/mochila120.txt` por default):
+### Ejecución del algoritmo tradicional
+
+Resolver un set de datos (si no se indica nada, usa `sets/mochila120.txt` por default)
 Ejecucion del algoritmo tradicional:
 ```bash
 python3 mochila_programacion_dinamica1.py sets/mochila20.txt        
 ```
+### Ejecuciones del algoritmo alternativo (Se debe especificar siempre el set de datos)
+
 Ejecucion del algoritmo alternativo con B como resultado del algoritmo tradicional:
 ```bash
 python3 mochila_programacion_dinamica2.py sets/mochila20.txt        
