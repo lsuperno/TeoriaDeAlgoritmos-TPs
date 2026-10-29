@@ -47,12 +47,15 @@ def mochila_min_peso(elementos, B):
     return matriz[n][B], lista_elementos[::-1]
 
 def main():
-    nombre_archivo = "sets/mochila120.txt"
+    if len(sys.argv) >= 2:
+        nombre_archivo = sys.argv[1]
+    else:
+        nombre_archivo = "sets/mochila120.txt"
 
     W, elementos = leer_mochila(nombre_archivo)
 
-    if len(sys.argv) >= 2:
-        B = int(sys.argv[1])
+    if len(sys.argv) >= 3:
+        B = int(sys.argv[2])
     else:
         B, _ = mochila_max_beneficio(elementos, W)
 

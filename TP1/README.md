@@ -77,7 +77,35 @@ python3 generar_sets.py
 
 ## Ejercicio 3 – Programación Dinámica
 
-_Completar._
+```bash
+cd Ej3_Programacion_Dinamica
+```
+
+Resolver un set de datos (si no se indica nada, usa `sets/mochila120.txt` por default):
+
+```bash
+python3 mochila_programacion_dinamica1.py sets/mochila20.txt        
+```
+Ejecucion del algoritmo alternativo con B como resultado del algoritmo tradicional
+```bash
+python3 mochila_programacion_dinamica2.py sets/mochila20.txt        
+```
+Ejecucion del algoritmo alternativo con un B ingresado por consola
+```bash
+python3 mochila_programacion_dinamica2.py sets/mochila20.txt 3000   
+```
+
+Medir tiempos y generar gráficos (guarda `resultados/resultados_pd.csv` y los gráficos en `graficos/`:
+
+```bash
+python3 graficos_pd.py
+```
+
+Regenerar los sets (ya están en `sets/`; usa semilla fija y produce los mismos archivos):
+
+```bash
+python3 generar_sets.py
+```
 
 ## Ejercicio 4 – Programación Lineal
 
