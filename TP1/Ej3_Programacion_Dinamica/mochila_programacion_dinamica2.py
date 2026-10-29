@@ -1,6 +1,6 @@
 import os
 import sys
-from algo_PD1 import mochila_max_beneficio 
+from mochila_programacion_dinamica1 import mochila_max_beneficio 
 #Aca importo la funcion de algo_PD1 para sacar el beneficio fijo B del beneficio óptimo 
 #que devuelve el planteo tradicional
 
