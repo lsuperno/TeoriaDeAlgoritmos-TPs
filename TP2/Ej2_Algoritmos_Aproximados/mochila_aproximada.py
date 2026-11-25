@@ -1,6 +1,7 @@
 import math
 import os
 import sys
+import time
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
@@ -26,6 +27,10 @@ def lectura_archivo(nombre):
 
 
 def mochila_aproximada(capacidad, elementos, epsilon):
+
+    # Epsilon debe ser positivo, si no b no esta bien definido
+    if epsilon <= 0:
+        raise ValueError("epsilon debe ser mayor que 0")
 
     # Nos quedamos solo con los elementos que entran en la mochila
     elementos_validos = []
@@ -98,24 +103,40 @@ def mochila_aproximada(capacidad, elementos, epsilon):
     return beneficio_total, items_agregados
 
 
-def main():
+def ejecutar(n, epsilon):
+    """Corre el algoritmo sobre la instancia de tamaño n y mide el tiempo.
 
-    n = 100
+    Devuelve (capacidad, beneficio, items, tiempo_en_segundos).
+    Mas que nada para los tests y el grafico
+    """
     nombre_archivo = f"mochila{n}.txt"
-    epsilon = 0.25
 
     if not os.path.exists(nombre_archivo):
         crear_mochila(n)
 
     capacidad, elementos = lectura_archivo(nombre_archivo)
-    beneficio_maximo, items_agregados = mochila_aproximada(
-        capacidad, elementos, epsilon
-    )
+
+    inicio = time.perf_counter()
+    beneficio, items = mochila_aproximada(capacidad, elementos, epsilon)
+    tiempo = time.perf_counter() - inicio
+
+    return capacidad, beneficio, items, tiempo
+
+
+def main():
+
+    # Uso: python mochila_aproximada.py [n] [epsilon]
+    n = int(sys.argv[1]) if len(sys.argv) > 1 else 100
+    epsilon = float(sys.argv[2]) if len(sys.argv) > 2 else 0.25
+
+    capacidad, beneficio_maximo, items_agregados, tiempo = ejecutar(n, epsilon)
 
     print(f"Capacidad de la mochila: {capacidad}")
     print(f"Epsilon: {epsilon}")
     print(f"Beneficio máximo obtenido: {beneficio_maximo}")
     print(f"Items agregados ({len(items_agregados)}): {items_agregados}")
+    print(f"Tiempo de ejecución: {tiempo:.4f} s")
 
 
-main()
+if __name__ == "__main__":
+    main()
